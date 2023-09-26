@@ -20,6 +20,9 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(lubridate)
 
+git config --global user.email "lsaiz07@gwu.edu"
+git config --global user.name "Lucas"
+
 ```
 
 Run this line below load the data for this assignment. It will load a dataframe called "impeach," containing U.S. House Democrats and whether they supported the first impeachment of Pres. Trump, along with when they announced such support.
@@ -160,7 +163,5 @@ impeach %>%
   filter(for_impeachment == "no", state == "nj")
 
 
-git config --global user.email"lsaiz07@gwu.edu”
-git config --global user.name"Lucas"
 
 ```
