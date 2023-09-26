@@ -1,6 +1,6 @@
 ---
 title: "In Class Exercises - Sorting and Filtering"
-author: "Your Name Here"
+author: "Lucas Saiz"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 format:
   html:
@@ -37,7 +37,7 @@ Let's see what we have:
 
 impeach
 
-
+"for_impeachment"
 ```
 
 ## Exercise Questions
@@ -48,7 +48,10 @@ impeach
 
 ```{r}
 
+impeach
 
+impeach%>%
+  filter(for_impeachment == "NO")
 
 
 
@@ -59,9 +62,8 @@ impeach
 
 ```{r}
 
-
-
-
+impeach %>%
+  filter(for_impeachment == "No", p16winningparty == "R" )
 
 ```
 
@@ -70,6 +72,8 @@ impeach
 ```{r}
 
 
+impeach %>%
+  filter(for_impeachment == "No", p16winningparty == "R", p12winningparty == "R" )
 
 
 
@@ -79,6 +83,8 @@ impeach
 
 ```{r}
 
+impeach %>%
+  filter(for_impeachment == "No", p16winningparty == "R", p12winningparty == "R" )
 
 
 
@@ -89,7 +95,7 @@ impeach
 
 ```{r}
 
-
+filter(impeach, for_impeachment == "yes", clinton_percent > 70)
 
 
 
@@ -100,7 +106,9 @@ bachelor's degree or higher ("pct_bachelors"), from lowest to highest.
 
 ```{r}
 
-
+impeach %>%
+  filter(for_impeachment == "no") %>%
+  arrange(pct_bachelors)
 
 
 
@@ -112,8 +120,9 @@ bachelor's degree or higher ("pct_bachelors"), from lowest to highest.
 ```{r}
 
 
-
-
+impeach %>%
+  filter(for_impeachment == "no") %>%
+  arrange(pct_bachelors)
 
 ```
 
@@ -123,7 +132,9 @@ Then filter those records by only those whose bachelor's percentage is below the
 
 ```{r}
 
-
+impeach %>%
+  filter(for_impeachment == "no") %>%
+  arrange(pct_bachelors)
 
 
 
@@ -135,7 +146,8 @@ Then filter those records by only those whose bachelor's percentage is below the
 ```{r}
 
 
-
+impeach %>%
+  arrange(filter(impeach, state == "NJ"))
 
 
 ```
@@ -144,8 +156,11 @@ Then filter those records by only those whose bachelor's percentage is below the
 
 ```{r}
 
+impeach %>%
+  filter(for_impeachment == "no", state == "nj")
 
 
-
+git config --global user.email"lsaiz07@gwu.edu”
+git config --global user.name"Lucas"
 
 ```
