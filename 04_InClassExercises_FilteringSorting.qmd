@@ -20,8 +20,6 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(lubridate)
 
-git config --global user.email "lsaiz07@gwu.edu"
-git config --global user.name "Lucas"
 
 ```
 
@@ -30,7 +28,7 @@ Run this line below load the data for this assignment. It will load a dataframe 
 ```{r}
 
 impeach <- read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vRh8d5JaDqBtByzNw2JZF3idaACobDhhk-p7chJoktA0HawELHFOvjQOqCpzGA4MGONvPlR7GASqW-K/pub?gid=1765341510&single=true&output=csv")
-
+str(impeach)
 
 ```
 
@@ -66,7 +64,7 @@ impeach%>%
 ```{r}
 
 impeach %>%
-  filter(for_impeachment == "No", p16winningparty == "R" )
+  filter(for_impeachment == "NO" & p16winningparty == "R" )
 
 ```
 
@@ -76,7 +74,7 @@ impeach %>%
 
 
 impeach %>%
-  filter(for_impeachment == "No", p16winningparty == "R", p12winningparty == "R" )
+  filter(for_impeachment == "NO" & p16winningparty == "R" & p12winningparty == "R" )
 
 
 
@@ -87,7 +85,7 @@ impeach %>%
 ```{r}
 
 impeach %>%
-  filter(for_impeachment == "No", p16winningparty == "R", p12winningparty == "R" )
+  filter(for_impeachment == "YES" & date_month == 9)
 
 
 
@@ -98,7 +96,7 @@ impeach %>%
 
 ```{r}
 
-filter(impeach, for_impeachment == "yes", clinton_percent > 70)
+filter(impeach, for_impeachment == "YES" & clinton_percent > 70)
 
 
 
@@ -110,7 +108,6 @@ bachelor's degree or higher ("pct_bachelors"), from lowest to highest.
 ```{r}
 
 impeach %>%
-  filter(for_impeachment == "no") %>%
   arrange(pct_bachelors)
 
 
@@ -124,7 +121,7 @@ impeach %>%
 
 
 impeach %>%
-  filter(for_impeachment == "no") %>%
+  filter(for_impeachment == "NO") %>%
   arrange(pct_bachelors)
 
 ```
@@ -135,9 +132,12 @@ Then filter those records by only those whose bachelor's percentage is below the
 
 ```{r}
 
-impeach %>%
-  filter(for_impeachment == "no") %>%
-  arrange(pct_bachelors)
+impeach_2<-impeach %>% 
+  filter(for_impeachment == "NO") %>%
+  arrange(pct_bachelors) 
+
+impeach_2 %>%
+  filter(pct_bachelors_compared_to_national == "ABOVE")
 
 
 
@@ -150,7 +150,7 @@ impeach %>%
 
 
 impeach %>%
-  arrange(filter(impeach, state == "NJ"))
+  filter(for_impeachment == "NO", state == "NJ")
 
 
 ```
@@ -160,7 +160,9 @@ impeach %>%
 ```{r}
 
 impeach %>%
-  filter(for_impeachment == "no", state == "nj")
+  filter(for_impeachment == "YES" & date_year < 2019) %>%
+  arrange(clinton_percent)
+  
 
 
 
